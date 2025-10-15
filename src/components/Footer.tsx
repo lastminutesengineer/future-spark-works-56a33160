@@ -1,0 +1,79 @@
+import { Github, Linkedin, Twitter, Mail } from "lucide-react";
+
+const Footer = () => {
+  return (
+    <footer className="py-12 px-4 border-t border-white/10">
+      <div className="container mx-auto">
+        <div className="grid md:grid-cols-4 gap-8 mb-8">
+          {/* Brand */}
+          <div className="space-y-4">
+            <h3 className="text-2xl font-bold gradient-text">IoT Innovator</h3>
+            <p className="text-sm text-muted-foreground">
+              Building the future with innovative IoT, Electronics, and Telecom solutions.
+            </p>
+          </div>
+
+          {/* Quick Links */}
+          <div>
+            <h4 className="font-semibold mb-4">Quick Links</h4>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li><a href="#" className="hover:text-primary transition-smooth">Projects</a></li>
+              <li><a href="#" className="hover:text-primary transition-smooth">Services</a></li>
+              <li><a href="#" className="hover:text-primary transition-smooth">About</a></li>
+              <li><a href="#" className="hover:text-primary transition-smooth">Blog</a></li>
+            </ul>
+          </div>
+
+          {/* Services */}
+          <div>
+            <h4 className="font-semibold mb-4">Services</h4>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li><a href="#" className="hover:text-primary transition-smooth">IoT Development</a></li>
+              <li><a href="#" className="hover:text-primary transition-smooth">PCB Design</a></li>
+              <li><a href="#" className="hover:text-primary transition-smooth">Embedded Systems</a></li>
+              <li><a href="#" className="hover:text-primary transition-smooth">Consulting</a></li>
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h4 className="font-semibold mb-4">Connect</h4>
+            <div className="flex gap-4">
+              <a 
+                href="#" 
+                className="w-10 h-10 rounded-full glass-card flex items-center justify-center hover:glow-primary transition-smooth group"
+              >
+                <Github className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-smooth" />
+              </a>
+              <a 
+                href="#" 
+                className="w-10 h-10 rounded-full glass-card flex items-center justify-center hover:glow-primary transition-smooth group"
+              >
+                <Linkedin className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-smooth" />
+              </a>
+              <a 
+                href="#" 
+                className="w-10 h-10 rounded-full glass-card flex items-center justify-center hover:glow-primary transition-smooth group"
+              >
+                <Twitter className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-smooth" />
+              </a>
+              <a 
+                href="#" 
+                className="w-10 h-10 rounded-full glass-card flex items-center justify-center hover:glow-primary transition-smooth group"
+              >
+                <Mail className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-smooth" />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="pt-8 border-t border-white/10 text-center text-sm text-muted-foreground">
+          <p>© {new Date().getFullYear()} IoT Innovator. All rights reserved. Built with passion for innovation.</p>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
