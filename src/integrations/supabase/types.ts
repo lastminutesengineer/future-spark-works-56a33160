@@ -14,7 +14,335 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      blogs: {
+        Row: {
+          author_id: string | null
+          content: string
+          created_at: string | null
+          excerpt: string | null
+          id: string
+          image_url: string | null
+          likes: number | null
+          title: string
+          updated_at: string | null
+          views: number | null
+        }
+        Insert: {
+          author_id?: string | null
+          content: string
+          created_at?: string | null
+          excerpt?: string | null
+          id?: string
+          image_url?: string | null
+          likes?: number | null
+          title: string
+          updated_at?: string | null
+          views?: number | null
+        }
+        Update: {
+          author_id?: string | null
+          content?: string
+          created_at?: string | null
+          excerpt?: string | null
+          id?: string
+          image_url?: string | null
+          likes?: number | null
+          title?: string
+          updated_at?: string | null
+          views?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "blogs_author_id_fkey"
+            columns: ["author_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      cart_items: {
+        Row: {
+          created_at: string | null
+          id: string
+          item_id: string
+          item_type: string
+          quantity: number | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          item_id: string
+          item_type: string
+          quantity?: number | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          item_id?: string
+          item_type?: string
+          quantity?: number | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "cart_items_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      contacts: {
+        Row: {
+          created_at: string | null
+          email: string
+          id: string
+          message: string
+          name: string
+        }
+        Insert: {
+          created_at?: string | null
+          email: string
+          id?: string
+          message: string
+          name: string
+        }
+        Update: {
+          created_at?: string | null
+          email?: string
+          id?: string
+          message?: string
+          name?: string
+        }
+        Relationships: []
+      }
+      orders: {
+        Row: {
+          created_at: string | null
+          id: string
+          invoice_url: string | null
+          items: Json
+          status: string | null
+          total_price: number
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          invoice_url?: string | null
+          items: Json
+          status?: string | null
+          total_price: number
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          invoice_url?: string | null
+          items?: Json
+          status?: string | null
+          total_price?: number
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "orders_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      products: {
+        Row: {
+          best_seller: boolean | null
+          category: string
+          created_at: string | null
+          datasheet_url: string | null
+          description: string
+          featured: boolean | null
+          id: string
+          image_url: string | null
+          name: string
+          new_arrival: boolean | null
+          price: number
+          stock: number | null
+        }
+        Insert: {
+          best_seller?: boolean | null
+          category: string
+          created_at?: string | null
+          datasheet_url?: string | null
+          description: string
+          featured?: boolean | null
+          id?: string
+          image_url?: string | null
+          name: string
+          new_arrival?: boolean | null
+          price: number
+          stock?: number | null
+        }
+        Update: {
+          best_seller?: boolean | null
+          category?: string
+          created_at?: string | null
+          datasheet_url?: string | null
+          description?: string
+          featured?: boolean | null
+          id?: string
+          image_url?: string | null
+          name?: string
+          new_arrival?: boolean | null
+          price?: number
+          stock?: number | null
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string | null
+          email: string | null
+          full_name: string | null
+          id: string
+          phone: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string | null
+          email?: string | null
+          full_name?: string | null
+          id: string
+          phone?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string | null
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      projects: {
+        Row: {
+          category: string
+          circuit_diagram_url: string | null
+          components_used: Json | null
+          created_at: string | null
+          demo_video_url: string | null
+          description: string
+          featured: boolean | null
+          id: string
+          image_url: string | null
+          package_includes: string[] | null
+          price: number
+          short_description: string | null
+          tags: string[] | null
+          title: string
+        }
+        Insert: {
+          category: string
+          circuit_diagram_url?: string | null
+          components_used?: Json | null
+          created_at?: string | null
+          demo_video_url?: string | null
+          description: string
+          featured?: boolean | null
+          id?: string
+          image_url?: string | null
+          package_includes?: string[] | null
+          price: number
+          short_description?: string | null
+          tags?: string[] | null
+          title: string
+        }
+        Update: {
+          category?: string
+          circuit_diagram_url?: string | null
+          components_used?: Json | null
+          created_at?: string | null
+          demo_video_url?: string | null
+          description?: string
+          featured?: boolean | null
+          id?: string
+          image_url?: string | null
+          package_includes?: string[] | null
+          price?: number
+          short_description?: string | null
+          tags?: string[] | null
+          title?: string
+        }
+        Relationships: []
+      }
+      services: {
+        Row: {
+          created_at: string | null
+          description: string
+          icon: string | null
+          id: string
+          order_index: number | null
+          title: string
+        }
+        Insert: {
+          created_at?: string | null
+          description: string
+          icon?: string | null
+          id?: string
+          order_index?: number | null
+          title: string
+        }
+        Update: {
+          created_at?: string | null
+          description?: string
+          icon?: string | null
+          id?: string
+          order_index?: number | null
+          title?: string
+        }
+        Relationships: []
+      }
+      wishlists: {
+        Row: {
+          created_at: string | null
+          id: string
+          item_id: string
+          item_type: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          item_id: string
+          item_type: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          item_id?: string
+          item_type?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "wishlists_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
