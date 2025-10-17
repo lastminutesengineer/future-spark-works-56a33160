@@ -93,7 +93,7 @@ All colors MUST be HSL.
 
 @layer utilities {
   .glass-card {
-    @apply backdrop-blur-lg bg-card/60 border border-white/10;
+    @apply backdrop-blur-lg bg-card/60 border border-primary/20;
     box-shadow: var(--shadow-glass);
   }
   
@@ -118,5 +118,20 @@ All colors MUST be HSL.
   
   .transition-smooth {
     transition: var(--transition-smooth);
+  }
+  
+  .circuit-pattern {
+    background-image: 
+      linear-gradient(rgba(0, 191, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 191, 255, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+  
+  .hover-lift {
+    @apply transition-smooth hover:-translate-y-1 hover:shadow-lg;
+  }
+  
+  .neon-border {
+    @apply border border-primary/50 hover:border-primary transition-smooth;
   }
 }
