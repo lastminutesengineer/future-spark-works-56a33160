@@ -8,51 +8,60 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 4%;
-    --foreground: 0 0% 98%;
+    /* Deep Space Black - Base */
+    --background: 215 100% 4%;
+    --foreground: 0 0% 88%;
 
-    --card: 0 0% 8%;
-    --card-foreground: 0 0% 98%;
+    --card: 215 80% 6%;
+    --card-foreground: 0 0% 88%;
 
-    --popover: 0 0% 8%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 215 80% 6%;
+    --popover-foreground: 0 0% 88%;
 
-    --primary: 195 100% 50%;
-    --primary-foreground: 0 0% 4%;
+    /* Electric Cyan - Primary */
+    --primary: 180 100% 50%;
+    --primary-foreground: 215 100% 4%;
 
-    --secondary: 274 66% 59%;
-    --secondary-foreground: 0 0% 98%;
+    /* Neon Violet - Secondary */
+    --secondary: 274 100% 65%;
+    --secondary-foreground: 0 0% 88%;
 
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 65%;
+    --muted: 215 40% 12%;
+    --muted-foreground: 0 0% 60%;
 
-    --accent: 274 66% 59%;
-    --accent-foreground: 0 0% 98%;
+    /* Neon Violet - Accent */
+    --accent: 274 100% 65%;
+    --accent-foreground: 0 0% 88%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 20%;
-    --input: 0 0% 15%;
-    --ring: 195 100% 50%;
+    --border: 215 30% 18%;
+    --input: 215 40% 12%;
+    --ring: 180 100% 50%;
 
     --radius: 1rem;
     
-    /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(195 100% 50%) 0%, hsl(274 66% 59%) 100%);
-    --gradient-hero: linear-gradient(180deg, hsl(0 0% 4%) 0%, hsl(0 0% 8%) 50%, hsl(0 0% 4%) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 8% / 0.6) 0%, hsl(0 0% 12% / 0.4) 100%);
+    /* Futuristic Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(180 100% 50%) 0%, hsl(274 100% 65%) 100%);
+    --gradient-hero: linear-gradient(180deg, hsl(215 100% 4%) 0%, hsl(215 80% 6%) 50%, hsl(215 100% 4%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(215 80% 6% / 0.6) 0%, hsl(215 60% 10% / 0.4) 100%);
+    --gradient-glow: radial-gradient(circle at 50% 50%, hsl(180 100% 50% / 0.2) 0%, transparent 70%);
+    --gradient-purple-glow: radial-gradient(circle at 50% 50%, hsl(274 100% 65% / 0.2) 0%, transparent 70%);
     
-    /* Glows */
-    --glow-primary: 0 0 20px hsl(195 100% 50% / 0.5), 0 0 40px hsl(195 100% 50% / 0.3);
-    --glow-secondary: 0 0 20px hsl(274 66% 59% / 0.5), 0 0 40px hsl(274 66% 59% / 0.3);
+    /* Enhanced Glows */
+    --glow-primary: 0 0 30px hsl(180 100% 50% / 0.6), 0 0 60px hsl(180 100% 50% / 0.4), 0 0 90px hsl(180 100% 50% / 0.2);
+    --glow-secondary: 0 0 30px hsl(274 100% 65% / 0.6), 0 0 60px hsl(274 100% 65% / 0.4), 0 0 90px hsl(274 100% 65% / 0.2);
+    --glow-soft: 0 0 20px hsl(180 100% 50% / 0.3), 0 0 40px hsl(180 100% 50% / 0.2);
     
-    /* Shadows */
-    --shadow-glass: 0 8px 32px 0 hsl(0 0% 0% / 0.37);
-    --shadow-elevated: 0 20px 50px hsl(0 0% 0% / 0.5);
+    /* 3D Shadows */
+    --shadow-glass: 0 8px 32px 0 hsl(0 0% 0% / 0.5), inset 0 1px 1px hsl(0 0% 100% / 0.1);
+    --shadow-elevated: 0 20px 60px hsl(0 0% 0% / 0.6), 0 0 40px hsl(180 100% 50% / 0.2);
+    --shadow-3d: 0 10px 40px hsl(0 0% 0% / 0.4), 0 0 20px hsl(180 100% 50% / 0.3);
     
-    /* Transitions */
+    /* Smooth Transitions */
     --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --sidebar-background: 0 0% 98%;
 
@@ -122,16 +131,44 @@ All colors MUST be HSL.
   
   .circuit-pattern {
     background-image: 
-      linear-gradient(rgba(0, 191, 255, 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0, 191, 255, 0.05) 1px, transparent 1px);
-    background-size: 50px 50px;
+      linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    animation: circuit-move 20s linear infinite;
+  }
+  
+  @keyframes circuit-move {
+    0% { background-position: 0 0; }
+    100% { background-position: 40px 40px; }
   }
   
   .hover-lift {
-    @apply transition-smooth hover:-translate-y-1 hover:shadow-lg;
+    @apply transition-smooth hover:-translate-y-2 hover:shadow-lg;
+  }
+  
+  .hover-3d {
+    transition: var(--transition-bounce);
+  }
+  
+  .hover-3d:hover {
+    transform: perspective(1000px) rotateX(2deg) rotateY(2deg) scale(1.02);
+    box-shadow: var(--shadow-3d);
   }
   
   .neon-border {
     @apply border border-primary/50 hover:border-primary transition-smooth;
+  }
+  
+  .particle-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
   }
 }

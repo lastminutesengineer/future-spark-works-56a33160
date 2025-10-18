@@ -69,15 +69,12 @@ const Navbar = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2 group">
+          <Link to="/" className="flex items-center space-x-3 group">
             <div className="relative">
-              <Zap className="w-8 h-8 text-primary group-hover:text-secondary transition-smooth" />
-              <div className="absolute inset-0 bg-primary blur-lg opacity-0 group-hover:opacity-50 transition-smooth" />
+              <Zap className="w-8 h-8 text-primary group-hover:text-secondary transition-smooth group-hover:rotate-12" />
+              <div className="absolute inset-0 bg-primary blur-lg opacity-0 group-hover:opacity-70 transition-smooth animate-pulse" />
             </div>
-            <div>
-              <span className="text-xl font-bold gradient-text">Last Minutes Engineer</span>
-              <p className="text-xs text-muted-foreground">Your Vision, Our Circuit</p>
-            </div>
+            <span className="text-xl font-bold gradient-text">Last Minutes Engineer</span>
           </Link>
 
           {/* Desktop Nav */}

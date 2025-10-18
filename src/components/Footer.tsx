@@ -7,9 +7,9 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           {/* Brand */}
           <div className="space-y-4">
-            <h3 className="text-2xl font-bold gradient-text">IoT Innovator</h3>
+            <h3 className="text-2xl font-bold gradient-text">Last Minutes Engineer</h3>
             <p className="text-sm text-muted-foreground">
-              Building the future with innovative IoT, Electronics, and Telecom solutions.
+              Your Vision, Our Circuit — Building the future with innovative IoT & Electronics.
             </p>
           </div>
 
@@ -69,7 +69,7 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-white/10 text-center text-sm text-muted-foreground">
-          <p>© {new Date().getFullYear()} IoT Innovator. All rights reserved. Built with passion for innovation.</p>
+          <p>© {new Date().getFullYear()} Last Minutes Engineer. All rights reserved. Built with passion for innovation.</p>
         </div>
       </div>
     </footer>

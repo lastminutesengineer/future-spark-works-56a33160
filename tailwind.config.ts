@@ -14,7 +14,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        heading: ['Poppins', 'sans-serif'],
+        heading: ['Outfit', 'sans-serif'],
         body: ['Inter', 'sans-serif'],
       },
       colors: {
@@ -86,6 +86,19 @@ export default {
           "0%, 100%": { transform: "translateY(0px)" },
           "50%": { transform: "translateY(-20px)" },
         },
+        "particle-float": {
+          "0%, 100%": { transform: "translate(0, 0) scale(1)", opacity: "0.3" },
+          "33%": { transform: "translate(30px, -30px) scale(1.1)", opacity: "0.6" },
+          "66%": { transform: "translate(-20px, 20px) scale(0.9)", opacity: "0.4" },
+        },
+        "rotate-slow": {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
+        "bounce-glow": {
+          "0%, 100%": { transform: "scale(1)", boxShadow: "0 0 20px hsl(var(--primary) / 0.5)" },
+          "50%": { transform: "scale(1.05)", boxShadow: "0 0 40px hsl(var(--primary) / 0.8)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -95,6 +108,9 @@ export default {
         "scale-in": "scale-in 0.5s ease-out",
         "glow-pulse": "glow-pulse 2s ease-in-out infinite",
         "float": "float 6s ease-in-out infinite",
+        "particle-float": "particle-float 20s ease-in-out infinite",
+        "rotate-slow": "rotate-slow 30s linear infinite",
+        "bounce-glow": "bounce-glow 2s ease-in-out infinite",
       },
     },
   },
