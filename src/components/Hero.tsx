@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden -mt-16 pt-16">
       {/* Animated Background Layers */}
       <div className="absolute inset-0 circuit-pattern opacity-20" />
       

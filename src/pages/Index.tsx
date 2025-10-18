@@ -10,12 +10,15 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      <Hero />
-      <FeaturedProjects />
-      <HowItWorks />
-      <Services />
-      <ContactCTA />
-      <Footer />
+      {/* Add padding-top to prevent content from hiding under fixed header */}
+      <div className="pt-16">
+        <Hero />
+        <FeaturedProjects />
+        <HowItWorks />
+        <Services />
+        <ContactCTA />
+        <Footer />
+      </div>
     </div>
   );
 };

@@ -35,19 +35,19 @@ const Chatbot = () => {
 
   return (
     <>
-      {/* Chat Button */}
+      {/* Chat Button - Fixed positioning with proper z-index */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full bg-gradient-primary text-primary-foreground shadow-lg hover:scale-110 transition-bounce flex items-center justify-center glow-primary group"
+        className="fixed bottom-8 right-8 z-40 w-16 h-16 rounded-full bg-gradient-primary text-primary-foreground shadow-lg hover:scale-110 transition-bounce flex items-center justify-center glow-primary group"
       >
         {isOpen ? <X className="w-7 h-7" /> : <MessageCircle className="w-7 h-7" />}
         <div className="absolute inset-0 rounded-full bg-primary/50 animate-ping opacity-20 group-hover:opacity-40" />
         <div className="absolute inset-0 rounded-full bg-gradient-primary opacity-0 group-hover:opacity-20 animate-rotate-slow" />
       </button>
 
-      {/* Chat Window */}
+      {/* Chat Window - Proper z-index to stay below navbar */}
       {isOpen && (
-        <Card className="fixed bottom-28 right-6 z-50 w-96 h-[550px] glass-card flex flex-col animate-scale-in shadow-elevated">
+        <Card className="fixed bottom-28 right-8 z-40 w-96 h-[550px] glass-card flex flex-col animate-scale-in shadow-elevated">
           {/* Header with Gradient */}
           <div className="p-5 border-b border-primary/20 bg-gradient-primary relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-glow opacity-50" />
