@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface Particle {
   x: number;
@@ -11,6 +11,7 @@ interface Particle {
 
 const ParticleBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -84,8 +85,28 @@ const ParticleBackground = () => {
       canvas.height = window.innerHeight;
     };
 
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePos({ x: e.clientX, y: e.clientY });
+      
+      // Add magnetic effect - pull particles toward mouse
+      particles.forEach((particle) => {
+        const dx = e.clientX - particle.x;
+        const dy = e.clientY - particle.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        
+        if (distance < 200) {
+          particle.vx += (dx / distance) * 0.05;
+          particle.vy += (dy / distance) * 0.05;
+        }
+      });
+    };
+
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
   }, []);
 
   return (

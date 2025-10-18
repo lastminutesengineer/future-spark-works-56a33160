@@ -35,7 +35,7 @@ const Hero = () => {
         <div className="max-w-4xl mx-auto space-y-8 animate-fade-in">
           {/* Main Heading with Typewriter Effect */}
           <h1 className="text-6xl md:text-8xl font-bold leading-tight animate-scale-in">
-            <span className="gradient-text inline-block animate-glow-pulse">Last Minutes Engineer</span>
+            <span className="holographic inline-block animate-glow-pulse">Last Minutes Engineer</span>
             <br />
             <span className="text-foreground inline-block mt-4 relative">
               Your Vision, Our Circuit
@@ -49,14 +49,14 @@ const Hero = () => {
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in" style={{ animationDelay: '0.6s' }}>
             <Link to="/projects">
-              <Button variant="hero" size="xl" className="group relative overflow-hidden">
+              <Button variant="hero" size="xl" className="group relative overflow-hidden magnetic-button neon-border-pulse">
                 <span className="relative z-10">🚀 Explore Projects</span>
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-2 transition-smooth relative z-10" />
                 <div className="absolute inset-0 bg-gradient-to-r from-primary via-secondary to-primary bg-[length:200%_100%] animate-[gradient_3s_ease_infinite] opacity-0 group-hover:opacity-100 transition-opacity" />
               </Button>
             </Link>
             <Link to="/products">
-              <Button variant="glass" size="xl" className="group">
+              <Button variant="glass" size="xl" className="group magnetic-button">
                 🧩 Shop Components
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-2 transition-smooth" />
               </Button>
