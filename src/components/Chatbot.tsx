@@ -38,9 +38,9 @@ const Chatbot = () => {
       {/* Chat Button - Fixed positioning with proper z-index */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-8 right-8 z-40 w-16 h-16 rounded-full bg-gradient-primary text-primary-foreground shadow-lg hover:scale-110 transition-bounce flex items-center justify-center glow-primary group"
+        className="fixed bottom-8 right-8 z-40 w-16 h-16 rounded-full bg-gradient-primary text-white shadow-lg hover:scale-110 transition-bounce flex items-center justify-center glow-primary group"
       >
-        {isOpen ? <X className="w-7 h-7" /> : <MessageCircle className="w-7 h-7" />}
+        {isOpen ? <X className="w-7 h-7 text-white" /> : <MessageCircle className="w-7 h-7 text-white" />}
         <div className="absolute inset-0 rounded-full bg-primary/50 animate-ping opacity-20 group-hover:opacity-40" />
         <div className="absolute inset-0 rounded-full bg-gradient-primary opacity-0 group-hover:opacity-20 animate-rotate-slow" />
       </button>
