@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { MessageSquare, Mail, Phone } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const ContactCTA = () => {
   return (
@@ -61,13 +62,17 @@ const ContactCTA = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4 animate-fade-in" style={{ animationDelay: '0.4s' }}>
-              <Button variant="hero" size="xl" className="group relative overflow-hidden">
-                <span className="relative z-10">💬 Start a Conversation</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-primary via-secondary to-primary bg-[length:200%_100%] animate-[gradient_3s_ease_infinite] opacity-0 group-hover:opacity-100 transition-opacity" />
-              </Button>
-              <Button variant="glass" size="xl" className="hover:scale-105">
-                📞 Schedule a Call
-              </Button>
+              <Link to="/contact">
+                <Button variant="hero" size="xl" className="group relative overflow-hidden">
+                  <span className="relative z-10">💬 Start a Conversation</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary via-secondary to-primary bg-[length:200%_100%] animate-[gradient_3s_ease_infinite] opacity-0 group-hover:opacity-100 transition-opacity" />
+                </Button>
+              </Link>
+              <Link to="/contact">
+                <Button variant="glass" size="xl" className="hover:scale-105">
+                  📞 Schedule a Call
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

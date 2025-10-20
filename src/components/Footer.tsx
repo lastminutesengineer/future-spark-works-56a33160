@@ -17,10 +17,10 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><a href="#" className="hover:text-primary transition-smooth">Projects</a></li>
-              <li><a href="#" className="hover:text-primary transition-smooth">Services</a></li>
-              <li><a href="#" className="hover:text-primary transition-smooth">About</a></li>
-              <li><a href="#" className="hover:text-primary transition-smooth">Blog</a></li>
+              <li><a href="/projects" className="hover:text-primary transition-smooth">Projects</a></li>
+              <li><a href="/services" className="hover:text-primary transition-smooth">Services</a></li>
+              <li><a href="/products" className="hover:text-primary transition-smooth">Products</a></li>
+              <li><a href="/blog" className="hover:text-primary transition-smooth">Blog</a></li>
             </ul>
           </div>
 
@@ -28,10 +28,10 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">Services</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><a href="#" className="hover:text-primary transition-smooth">IoT Development</a></li>
-              <li><a href="#" className="hover:text-primary transition-smooth">PCB Design</a></li>
-              <li><a href="#" className="hover:text-primary transition-smooth">Embedded Systems</a></li>
-              <li><a href="#" className="hover:text-primary transition-smooth">Consulting</a></li>
+              <li><a href="/services" className="hover:text-primary transition-smooth">IoT Development</a></li>
+              <li><a href="/services" className="hover:text-primary transition-smooth">PCB Mounting</a></li>
+              <li><a href="/services" className="hover:text-primary transition-smooth">Embedded Systems</a></li>
+              <li><a href="/contact" className="hover:text-primary transition-smooth">Contact Us</a></li>
             </ul>
           </div>
 
@@ -40,25 +40,31 @@ const Footer = () => {
             <h4 className="font-semibold mb-4">Connect</h4>
             <div className="flex gap-4">
               <a 
-                href="#" 
+                href="https://github.com" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full glass-card flex items-center justify-center hover:glow-primary transition-smooth group"
               >
                 <Github className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-smooth" />
               </a>
               <a 
-                href="#" 
+                href="https://linkedin.com" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full glass-card flex items-center justify-center hover:glow-primary transition-smooth group"
               >
                 <Linkedin className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-smooth" />
               </a>
               <a 
-                href="#" 
+                href="https://twitter.com" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full glass-card flex items-center justify-center hover:glow-primary transition-smooth group"
               >
                 <Twitter className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-smooth" />
               </a>
               <a 
-                href="#" 
+                href="/contact" 
                 className="w-10 h-10 rounded-full glass-card flex items-center justify-center hover:glow-primary transition-smooth group"
               >
                 <Mail className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-smooth" />

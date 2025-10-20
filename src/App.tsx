@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Auth from "./pages/Auth";
 import Projects from "./pages/Projects";
+import ProjectDetail from "./pages/ProjectDetail";
 import Products from "./pages/Products";
 import ServicesPage from "./pages/ServicesPage";
 import Blog from "./pages/Blog";
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/projects" element={<Projects />} />
+          <Route path="/projects/:id" element={<ProjectDetail />} />
           <Route path="/products" element={<Products />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/blog" element={<Blog />} />

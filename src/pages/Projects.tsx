@@ -13,6 +13,7 @@ const Projects = () => {
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState("All");
 
+  const [searchQuery, setSearchQuery] = useState("");
   const categories = ["All", "IoT", "Embedded", "Robotics", "AI/ML", "Academic"];
 
   useEffect(() => {
@@ -34,6 +35,12 @@ const Projects = () => {
     setLoading(false);
   };
 
+  const filteredProjects = projects.filter((project) =>
+    project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    project.short_description?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    project.tags?.some((tag: string) => tag.toLowerCase().includes(searchQuery.toLowerCase()))
+  );
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -45,6 +52,17 @@ const Projects = () => {
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Ready-to-use projects with complete documentation, code, and components
             </p>
+          </div>
+
+          {/* Search Bar */}
+          <div className="max-w-2xl mx-auto mb-8">
+            <input
+              type="text"
+              placeholder="🔍 Search projects by name, description, or tags..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full px-6 py-4 rounded-2xl glass-card border border-primary/20 focus:border-primary/50 focus:outline-none focus:ring-2 focus:ring-primary/20 text-foreground placeholder:text-muted-foreground transition-smooth"
+            />
           </div>
 
           {/* Category Filter */}
@@ -66,7 +84,7 @@ const Projects = () => {
             <div className="text-center text-muted-foreground">Loading projects...</div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {projects.map((project) => (
+              {filteredProjects.map((project) => (
                 <Card key={project.id} className="glass-card hover-lift overflow-hidden group">
                   <div className="relative h-48 overflow-hidden">
                     <img
@@ -106,9 +124,9 @@ const Projects = () => {
             </div>
           )}
 
-          {projects.length === 0 && !loading && (
+          {filteredProjects.length === 0 && !loading && (
             <div className="text-center text-muted-foreground py-12">
-              No projects found. Check back soon!
+              No projects found matching your search. Try different keywords!
             </div>
           )}
         </div>

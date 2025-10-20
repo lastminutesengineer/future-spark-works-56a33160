@@ -6,9 +6,9 @@ import {
   Radio, 
   CircuitBoard, 
   Briefcase, 
-  Users,
   ArrowRight 
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const services = [
   {
@@ -18,8 +18,8 @@ const services = [
   },
   {
     icon: CircuitBoard,
-    title: "PCB Design & Fabrication",
-    description: "Professional PCB design, prototyping, and manufacturing services",
+    title: "Mount a component on General Purpose PCB",
+    description: "Professional component mounting and soldering services on general purpose PCBs",
   },
   {
     icon: Cpu,
@@ -35,11 +35,6 @@ const services = [
     icon: Briefcase,
     title: "Final Year Projects",
     description: "Complete academic project support with documentation and guidance",
-  },
-  {
-    icon: Users,
-    title: "Training & Workshops",
-    description: "Hands-on workshops for IoT, robotics, and embedded systems",
   },
 ];
 
@@ -106,12 +101,14 @@ const Services = () => {
 
         {/* CTA */}
         <div className="text-center animate-fade-in" style={{ animationDelay: '0.8s' }}>
-          <Button variant="hero" size="xl" className="group relative overflow-hidden energy-border ripple-effect neon-border-pulse">
-            <span className="relative z-10">Request Custom Project</span>
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-smooth relative z-10" />
-            <div className="absolute inset-0 bg-gradient-to-r from-secondary via-primary to-secondary bg-[length:200%_100%] animate-gradient opacity-0 group-hover:opacity-100 transition-opacity" />
-            <div className="absolute inset-0 bg-gradient-glow opacity-0 group-hover:opacity-100 transition-opacity" />
-          </Button>
+          <Link to="/contact">
+            <Button variant="hero" size="xl" className="group relative overflow-hidden energy-border ripple-effect neon-border-pulse">
+              <span className="relative z-10">Request Custom Project</span>
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-smooth relative z-10" />
+              <div className="absolute inset-0 bg-gradient-to-r from-secondary via-primary to-secondary bg-[length:200%_100%] animate-gradient opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="absolute inset-0 bg-gradient-glow opacity-0 group-hover:opacity-100 transition-opacity" />
+            </Button>
+          </Link>
         </div>
       </div>
     </section>
