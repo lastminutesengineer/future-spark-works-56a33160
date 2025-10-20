@@ -100,11 +100,11 @@ const Services = () => {
         </div>
 
         {/* CTA */}
-        <div className="text-center animate-fade-in" style={{ animationDelay: '0.8s' }}>
-          <Link to="/contact">
-            <Button variant="hero" size="xl" className="group relative overflow-hidden energy-border ripple-effect neon-border-pulse">
+        <div className="text-center animate-fade-in px-4" style={{ animationDelay: '0.8s' }}>
+          <Link to="/contact" className="inline-block w-full sm:w-auto">
+            <Button variant="hero" className="group relative overflow-hidden energy-border ripple-effect neon-border-pulse h-12 sm:h-14 px-6 sm:px-10 text-base sm:text-lg w-full sm:w-auto">
               <span className="relative z-10">Request Custom Project</span>
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-smooth relative z-10" />
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-2 transition-smooth relative z-10" />
               <div className="absolute inset-0 bg-gradient-to-r from-secondary via-primary to-secondary bg-[length:200%_100%] animate-gradient opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="absolute inset-0 bg-gradient-glow opacity-0 group-hover:opacity-100 transition-opacity" />
             </Button>
