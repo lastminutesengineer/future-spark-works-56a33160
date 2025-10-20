@@ -63,14 +63,16 @@ const ContactCTA = () => {
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4 animate-fade-in" style={{ animationDelay: '0.4s' }}>
               <Link to="/contact" className="w-full sm:w-auto">
-                <Button variant="hero" className="group relative overflow-hidden h-12 sm:h-14 px-6 sm:px-10 text-base sm:text-lg w-full sm:w-auto">
-                  <span className="relative z-10">💬 Start a Conversation</span>
+                <Button variant="hero" className="group relative overflow-hidden h-12 sm:h-14 px-4 sm:px-10 text-sm sm:text-lg w-full sm:w-auto whitespace-nowrap">
+                  <MessageSquare className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
+                  <span className="relative z-10">Start Conversation</span>
                   <div className="absolute inset-0 bg-gradient-to-r from-primary via-secondary to-primary bg-[length:200%_100%] animate-[gradient_3s_ease_infinite] opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Button>
               </Link>
               <Link to="/contact" className="w-full sm:w-auto">
-                <Button variant="glass" className="hover:scale-105 h-12 sm:h-14 px-6 sm:px-10 text-base sm:text-lg w-full sm:w-auto">
-                  📞 Schedule a Call
+                <Button variant="glass" className="hover:scale-105 h-12 sm:h-14 px-4 sm:px-10 text-sm sm:text-lg w-full sm:w-auto whitespace-nowrap">
+                  <Phone className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
+                  <span>Schedule a Call</span>
                 </Button>
               </Link>
             </div>
