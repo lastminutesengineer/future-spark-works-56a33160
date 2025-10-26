@@ -119,7 +119,7 @@ const Chatbot = () => {
                 <div
                   className={`max-w-[85%] p-4 rounded-2xl backdrop-blur-sm transition-smooth hover:scale-[1.02] ${
                     msg.role === "user"
-                      ? "bg-gradient-primary text-primary-foreground shadow-lg glow-soft"
+                      ? "bg-gradient-primary text-white shadow-lg glow-soft"
                       : "glass-card text-foreground border border-primary/20"
                   }`}
                 >

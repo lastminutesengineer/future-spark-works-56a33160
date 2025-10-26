@@ -4,15 +4,17 @@ import { supabase } from "@/integrations/supabase/client";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { ShoppingCart, Package } from "lucide-react";
+import { ShoppingCart, Package, Search } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const Products = () => {
   const [products, setProducts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState("All");
+  const [searchQuery, setSearchQuery] = useState("");
   const { toast } = useToast();
 
   const categories = ["All", "Microcontrollers", "Sensors", "Modules", "ICs", "Power Supply", "Displays"];
@@ -35,6 +37,11 @@ const Products = () => {
     }
     setLoading(false);
   };
+
+  const filteredProducts = products.filter((product) =>
+    product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    product.description?.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const addToCart = async (product: any) => {
     const { data: { session } } = await supabase.auth.getSession();
@@ -82,6 +89,16 @@ const Products = () => {
             </p>
           </div>
 
+          <div className="relative max-w-xl mx-auto mb-8">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+            <Input
+              placeholder="Search products..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-10 bg-background/50 border-primary/30"
+            />
+          </div>
+
           {/* Category Filter */}
           <div className="flex flex-wrap justify-center gap-2 mb-8">
             {categories.map((cat) => (
@@ -101,7 +118,7 @@ const Products = () => {
             <div className="text-center text-muted-foreground">Loading products...</div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {products.map((product) => (
+              {filteredProducts.map((product) => (
                 <Card key={product.id} className="glass-card hover-lift overflow-hidden group">
                   <div className="relative h-40 overflow-hidden">
                     <img
@@ -146,9 +163,9 @@ const Products = () => {
             </div>
           )}
 
-          {products.length === 0 && !loading && (
+          {filteredProducts.length === 0 && !loading && (
             <div className="text-center text-muted-foreground py-12">
-              No products found. Check back soon!
+              {searchQuery ? "No products found matching your search." : "No products found. Check back soon!"}
             </div>
           )}
         </div>

@@ -3,13 +3,15 @@ import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Calendar, Eye, ThumbsUp } from "lucide-react";
+import { Calendar, Eye, ThumbsUp, Search } from "lucide-react";
 
 const Blog = () => {
   const [blogs, setBlogs] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     fetchBlogs();
@@ -27,6 +29,11 @@ const Blog = () => {
     setLoading(false);
   };
 
+  const filteredBlogs = blogs.filter((blog) =>
+    blog.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    blog.excerpt?.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -40,11 +47,21 @@ const Blog = () => {
             </p>
           </div>
 
+          <div className="relative max-w-xl mx-auto mb-8">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+            <Input
+              placeholder="Search blogs..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-10 bg-background/50 border-primary/30"
+            />
+          </div>
+
           {loading ? (
             <div className="text-center text-muted-foreground">Loading blogs...</div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {blogs.map((blog) => (
+              {filteredBlogs.map((blog) => (
                 <Card key={blog.id} className="glass-card hover-lift overflow-hidden group">
                   <div className="relative h-48 overflow-hidden">
                     <img
@@ -82,9 +99,9 @@ const Blog = () => {
             </div>
           )}
 
-          {blogs.length === 0 && !loading && (
+          {filteredBlogs.length === 0 && !loading && (
             <div className="text-center text-muted-foreground py-12">
-              No blog posts yet. Check back soon!
+              {searchQuery ? "No blogs found matching your search." : "No blog posts yet. Check back soon!"}
             </div>
           )}
         </div>
