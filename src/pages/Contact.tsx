@@ -9,6 +9,13 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useToast } from "@/hooks/use-toast";
 import { Mail, Phone, MapPin } from "lucide-react";
+import { z } from "zod";
+
+const contactSchema = z.object({
+  name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
+  email: z.string().trim().email("Invalid email address").max(255, "Email must be less than 255 characters"),
+  message: z.string().trim().min(1, "Message is required").max(1000, "Message must be less than 1000 characters"),
+});
 
 const Contact = () => {
   const [name, setName] = useState("");
@@ -21,26 +28,49 @@ const Contact = () => {
     e.preventDefault();
     setLoading(true);
 
-    const { error } = await supabase.from("contacts").insert({
-      name,
-      email,
-      message,
-    });
+    try {
+      // Validate input with zod schema
+      const validatedData = contactSchema.parse({
+        name,
+        email,
+        message,
+      });
 
-    if (error) {
-      toast({
-        title: "Error",
-        description: "Failed to send message. Please try again.",
-        variant: "destructive",
+      const { error } = await supabase.from("contacts").insert({
+        name: validatedData.name,
+        email: validatedData.email,
+        message: validatedData.message,
       });
-    } else {
-      toast({
-        title: "Success",
-        description: "Message sent successfully! We'll get back to you soon.",
-      });
-      setName("");
-      setEmail("");
-      setMessage("");
+
+      if (error) {
+        toast({
+          title: "Error",
+          description: "Failed to send message. Please try again.",
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "Success",
+          description: "Message sent successfully! We'll get back to you soon.",
+        });
+        setName("");
+        setEmail("");
+        setMessage("");
+      }
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        toast({
+          title: "Validation Error",
+          description: error.errors[0].message,
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "Error",
+          description: "An unexpected error occurred. Please try again.",
+          variant: "destructive",
+        });
+      }
     }
 
     setLoading(false);
