@@ -152,10 +152,16 @@ export default {
           "0%, 100%": { borderRadius: "60% 40% 30% 70% / 60% 30% 70% 40%" },
           "50%": { borderRadius: "30% 60% 70% 40% / 50% 60% 30% 60%" },
         },
+        "scroll": {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
       },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
+			animation: {
+				"accordion-down": "accordion-down 0.2s ease-out",
+				"accordion-up": "accordion-up 0.2s ease-out",
+				"scroll": "scroll 40s linear infinite",
+				"scan-line": "scan-line 3s linear infinite",
         "fade-in": "fade-in 0.6s ease-out",
         "slide-up": "slide-up 0.8s ease-out",
         "scale-in": "scale-in 0.5s ease-out",
