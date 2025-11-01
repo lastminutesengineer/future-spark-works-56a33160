@@ -443,4 +443,22 @@ All colors MUST be HSL.
     width: 300%;
     height: 300%;
   }
+
+  /* Smooth Scroll Animation */
+  @keyframes scroll-smooth {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-scroll-smooth {
+    animation: scroll-smooth 40s linear infinite;
+  }
+
+  .pause-animation {
+    animation-play-state: paused !important;
+  }
 }

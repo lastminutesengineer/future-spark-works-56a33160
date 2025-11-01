@@ -32,27 +32,27 @@ const TechShowcase = () => {
         </div>
 
         {/* Infinite Scroll Container */}
-        <div className="relative">
+        <div className="relative group/scroll">
           {/* Gradient Overlays */}
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10" />
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10" />
+          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
 
-          {/* Scrolling Content - Double for seamless loop */}
-          <div className="flex animate-scroll">
+          {/* Scrolling Content - Double for seamless loop with hover pause */}
+          <div className="flex animate-scroll-smooth group-hover/scroll:pause-animation">
             {[...technologies, ...technologies].map((tech, index) => (
               <div
                 key={index}
-                className="flex-shrink-0 mx-4 holographic-card px-8 py-6 group cursor-pointer"
+                className="flex-shrink-0 mx-4 holographic-card px-8 py-6 group cursor-pointer transform hover:scale-105 hover:-translate-y-1"
               >
                 <div className="flex items-center gap-3">
-                  <span className="text-3xl group-hover:scale-125 transition-smooth">{tech.icon}</span>
+                  <span className="text-3xl group-hover:scale-125 group-hover:rotate-12 transition-all duration-300">{tech.icon}</span>
                   <span className="font-semibold text-foreground whitespace-nowrap group-hover:gradient-text transition-smooth">
                     {tech.name}
                   </span>
                 </div>
                 
                 {/* Glow Effect */}
-                <div className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-10 transition-smooth rounded-lg blur-xl" />
+                <div className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-20 transition-all duration-300 rounded-lg blur-xl -z-10" />
               </div>
             ))}
           </div>
