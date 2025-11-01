@@ -1,13 +1,16 @@
 import { useState, useEffect, useRef } from "react";
-import { MessageCircle, X, Send, Loader2 } from "lucide-react";
+import { MessageCircle, X, Send, Loader2, Lock } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Card } from "./ui/card";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "./ui/use-toast";
+import { useNavigate } from "react-router-dom";
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isCheckingAuth, setIsCheckingAuth] = useState(true);
   const [messages, setMessages] = useState<{ role: string; content: string }[]>([
     {
       role: "assistant",
@@ -17,6 +20,7 @@ const Chatbot = () => {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
+  const navigate = useNavigate();
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -27,8 +31,46 @@ const Chatbot = () => {
     scrollToBottom();
   }, [messages, isLoading]);
 
+  // Check authentication status
+  useEffect(() => {
+    const checkAuth = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      setIsAuthenticated(!!session);
+      setIsCheckingAuth(false);
+    };
+
+    checkAuth();
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setIsAuthenticated(!!session);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
   const handleSend = async () => {
     if (!input.trim() || isLoading) return;
+
+    // Check authentication before sending
+    if (!isAuthenticated) {
+      toast({
+        title: "Authentication Required",
+        description: "Please sign in to use the chat assistant.",
+        variant: "destructive",
+      });
+      navigate("/auth");
+      return;
+    }
+
+    // Client-side validation
+    if (input.length > 2000) {
+      toast({
+        title: "Message Too Long",
+        description: "Please limit your message to 2000 characters.",
+        variant: "destructive",
+      });
+      return;
+    }
 
     const userMessage = input.trim();
     setInput("");
@@ -143,32 +185,51 @@ const Chatbot = () => {
 
           {/* Input */}
           <div className="p-4 border-t border-primary/20 bg-card/80 backdrop-blur-sm">
-            <div className="flex space-x-2">
-              <Input
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyPress={(e) => e.key === "Enter" && !isLoading && handleSend()}
-                placeholder="Ask me anything..."
-                disabled={isLoading}
-                className="flex-1 bg-background/50 border-primary/30 focus:border-primary transition-smooth disabled:opacity-50"
-              />
-              <Button 
-                onClick={handleSend} 
-                size="icon" 
-                variant="hero" 
-                className="hover:scale-110"
-                disabled={isLoading}
-              >
-                {isLoading ? (
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                ) : (
-                  <Send className="w-4 h-4" />
-                )}
-              </Button>
-            </div>
-            <p className="text-xs text-muted-foreground mt-2 text-center">
-              {isLoading ? "Thinking..." : "Try asking about projects, components, or technical questions"}
-            </p>
+            {!isAuthenticated && !isCheckingAuth ? (
+              <div className="text-center space-y-3">
+                <div className="flex items-center justify-center gap-2 text-muted-foreground">
+                  <Lock className="w-4 h-4" />
+                  <p className="text-sm">Sign in required to chat</p>
+                </div>
+                <Button
+                  onClick={() => navigate("/auth")}
+                  variant="hero"
+                  className="w-full"
+                >
+                  Sign In to Chat
+                </Button>
+              </div>
+            ) : (
+              <>
+                <div className="flex space-x-2">
+                  <Input
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    onKeyPress={(e) => e.key === "Enter" && !isLoading && handleSend()}
+                    placeholder="Ask me anything..."
+                    disabled={isLoading || !isAuthenticated}
+                    className="flex-1 bg-background/50 border-primary/30 focus:border-primary transition-smooth disabled:opacity-50"
+                    maxLength={2000}
+                  />
+                  <Button 
+                    onClick={handleSend} 
+                    size="icon" 
+                    variant="hero" 
+                    className="hover:scale-110"
+                    disabled={isLoading || !isAuthenticated}
+                  >
+                    {isLoading ? (
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                    ) : (
+                      <Send className="w-4 h-4" />
+                    )}
+                  </Button>
+                </div>
+                <p className="text-xs text-muted-foreground mt-2 text-center">
+                  {isLoading ? "Thinking..." : `${input.length}/2000 • Ask about projects, components, or technical questions`}
+                </p>
+              </>
+            )}
           </div>
         </Card>
       )}

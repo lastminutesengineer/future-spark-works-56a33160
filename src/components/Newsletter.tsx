@@ -3,6 +3,17 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { toast } from "sonner";
 import { Mail, Sparkles } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { z } from "zod";
+
+const emailSchema = z.object({
+  email: z
+    .string()
+    .trim()
+    .email("Please enter a valid email address")
+    .max(255, "Email must be less than 255 characters")
+    .toLowerCase(),
+});
 
 const Newsletter = () => {
   const [email, setEmail] = useState("");
@@ -11,19 +22,38 @@ const Newsletter = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!email || !email.includes("@")) {
-      toast.error("Please enter a valid email address");
+    // Validate email with Zod
+    const validation = emailSchema.safeParse({ email });
+    if (!validation.success) {
+      toast.error(validation.error.errors[0].message);
       return;
     }
 
     setLoading(true);
     
-    // Simulate API call
-    setTimeout(() => {
+    try {
+      const { error } = await supabase
+        .from("newsletter_subscribers")
+        .insert({ email: validation.data.email });
+
+      if (error) {
+        // Handle duplicate email
+        if (error.code === "23505") {
+          toast.error("This email is already subscribed!");
+        } else {
+          toast.error("Failed to subscribe. Please try again.");
+        }
+        return;
+      }
+
       toast.success("🎉 Successfully subscribed to newsletter!");
       setEmail("");
+    } catch (error) {
+      console.error("Newsletter subscription error:", error);
+      toast.error("An error occurred. Please try again.");
+    } finally {
       setLoading(false);
-    }, 1000);
+    }
   };
 
   return (
