@@ -1,4 +1,4 @@
-import { Github, Linkedin, Twitter, Mail } from "lucide-react";
+import { Github, Linkedin, Instagram, Youtube } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -56,18 +56,20 @@ const Footer = () => {
                 <Linkedin className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-smooth" />
               </a>
               <a 
-                href="https://twitter.com" 
+                href="https://instagram.com" 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full glass-card flex items-center justify-center hover:glow-primary transition-smooth group"
               >
-                <Twitter className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-smooth" />
+                <Instagram className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-smooth" />
               </a>
               <a 
-                href="/contact" 
+                href="https://youtube.com" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full glass-card flex items-center justify-center hover:glow-primary transition-smooth group"
               >
-                <Mail className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-smooth" />
+                <Youtube className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-smooth" />
               </a>
             </div>
           </div>
