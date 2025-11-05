@@ -82,38 +82,46 @@ const Hero = () => {
             </Link>
           </div>
 
-          {/* Stats Cards with Holographic Effects - Better responsive sizing */}
+          {/* Stats Cards with Circular Glow Animation */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mt-12 sm:mt-16 lg:mt-20 max-w-3xl mx-auto px-4">
             {[
-              { icon: "⚡", number: "500+", label: "Projects Delivered", backText: "Cutting-edge solutions" },
-              { icon: "🎯", number: "1000+", label: "Happy Clients", backText: "Trusted worldwide" },
-              { icon: "🏆", number: "50+", label: "Workshops Done", backText: "Hands-on learning" },
+              { icon: "⚡", number: "500+", label: "Projects Delivered" },
+              { icon: "🎯", number: "1000+", label: "Happy Clients" },
+              { icon: "🏆", number: "50+", label: "Workshops Done" },
             ].map((stat, idx) => (
               <div 
                 key={idx} 
-                className="flip-card animate-slide-up"
-                style={{ animationDelay: `${0.8 + idx * 0.2}s`, height: '180px' }}
+                className="holographic-card p-6 sm:p-8 relative overflow-hidden animate-slide-up scan-line-container group"
+                style={{ animationDelay: `${0.8 + idx * 0.2}s` }}
               >
-                <div className="flip-card-inner">
-                  {/* Front */}
-                  <div className="flip-card-front holographic-card card-3d p-6 sm:p-8 relative overflow-hidden scan-line-container">
-                    <div className="absolute inset-0 bg-gradient-primary opacity-0 hover:opacity-20 transition-opacity" />
-                    <div className="absolute inset-0 bg-gradient-glow opacity-0 hover:opacity-100 transition-opacity" />
-                    <div className="relative z-10">
-                      <div className="text-3xl sm:text-4xl lg:text-5xl mb-2 sm:mb-3 float-3d" style={{ animationDelay: `${idx * 0.5}s` }}>{stat.icon}</div>
-                      <div className="text-2xl sm:text-3xl lg:text-4xl font-bold gradient-text mb-1 sm:mb-2 animate-energy-pulse glitch-text">{stat.number}</div>
-                      <div className="text-sm sm:text-base text-muted-foreground font-medium">{stat.label}</div>
-                    </div>
-                    <div className="absolute -bottom-1 -right-1 w-16 h-16 sm:w-20 sm:h-20 bg-primary/10 rounded-full blur-2xl hover:bg-primary/20 transition-all" />
-                  </div>
+                {/* Circular Icon with Strong Glow */}
+                <div className="relative mx-auto mb-6 w-32 h-32 flex items-center justify-center">
+                  {/* Outer Glow Effect */}
+                  <div className="absolute inset-0 rounded-full bg-primary/30 blur-2xl group-hover:bg-primary/50 transition-all duration-500 animate-pulse" />
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary to-secondary opacity-20 group-hover:opacity-40 transition-all duration-500" />
                   
-                  {/* Back */}
-                  <div className="flip-card-back holographic-card p-6 sm:p-8 flex flex-col items-center justify-center bg-gradient-primary relative overflow-hidden">
-                    <div className="text-4xl mb-4">{stat.icon}</div>
-                    <div className="text-2xl font-bold mb-2">{stat.number}</div>
-                    <div className="text-sm text-center">{stat.backText}</div>
+                  {/* Circle Border */}
+                  <div className="absolute inset-0 rounded-full border-4 border-primary/50 group-hover:border-primary transition-all duration-500" 
+                       style={{ boxShadow: '0 0 30px hsl(var(--primary) / 0.6), 0 0 60px hsl(var(--primary) / 0.4)' }} />
+                  
+                  {/* Icon */}
+                  <div className="relative z-10 text-4xl sm:text-5xl group-hover:scale-110 transition-transform duration-500">
+                    {stat.icon}
                   </div>
                 </div>
+
+                {/* Stats Text */}
+                <div className="text-center space-y-2">
+                  <div className="text-3xl sm:text-4xl font-bold gradient-text animate-energy-pulse">
+                    {stat.number}
+                  </div>
+                  <div className="text-sm sm:text-base text-muted-foreground font-medium">
+                    {stat.label}
+                  </div>
+                </div>
+
+                {/* Background Glow */}
+                <div className="absolute inset-0 bg-gradient-glow opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </div>
             ))}
           </div>
