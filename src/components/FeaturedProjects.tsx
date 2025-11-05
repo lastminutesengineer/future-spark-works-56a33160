@@ -49,39 +49,51 @@ const FeaturedProjects = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
           {projects.length > 0 ? (
             projects.map((project, index) => (
-              <Card key={project.id} className={`holographic-card card-3d overflow-hidden group fade-in-up scan-line-container ${isVisible ? 'visible' : ''}`} style={{ animationDelay: `${index * 0.15}s` }}>
-                <div className="relative h-48 overflow-hidden">
-                  <img
-                    src={project.image_url || "/placeholder.svg"}
-                    alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-smooth"
-                  />
-                  <div className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-20 transition-opacity mix-blend-overlay" />
-                  <Badge className="absolute top-3 right-3 animate-glow-pulse" variant="secondary">
-                    {project.category}
-                  </Badge>
-                  {project.featured && (
-                    <div className="absolute top-3 left-3 px-3 py-1 bg-primary/90 backdrop-blur-sm rounded-full text-xs font-bold animate-energy-pulse">
-                      AI Recommended
+              <div key={project.id} className={`flip-card fade-in-up ${isVisible ? 'visible' : ''}`} style={{ animationDelay: `${index * 0.15}s`, height: '400px' }}>
+                <div className="flip-card-inner">
+                  {/* Front Side */}
+                  <Card className="flip-card-front holographic-card overflow-hidden scan-line-container">
+                    <div className="relative h-48 overflow-hidden">
+                      <img
+                        src={project.image_url || "/placeholder.svg"}
+                        alt={project.title}
+                        className="w-full h-full object-cover"
+                      />
+                      <Badge className="absolute top-3 right-3 animate-glow-pulse" variant="secondary">
+                        {project.category}
+                      </Badge>
+                      {project.featured && (
+                        <div className="absolute top-3 left-3 px-3 py-1 bg-primary/90 backdrop-blur-sm rounded-full text-xs font-bold animate-energy-pulse">
+                          AI Recommended
+                        </div>
+                      )}
                     </div>
-                  )}
-                </div>
-                <div className="p-6 relative">
-                  <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
-                  <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-smooth glitch-text">
-                    {project.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
-                    {project.short_description}
-                  </p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-2xl font-bold gradient-text animate-glow-pulse">₹{project.price}</span>
+                    <div className="p-6 relative">
+                      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+                      <h3 className="text-xl font-bold mb-2 glitch-text">
+                        {project.title}
+                      </h3>
+                      <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
+                        {project.short_description}
+                      </p>
+                      <div className="flex items-center justify-between">
+                        <span className="text-2xl font-bold gradient-text animate-glow-pulse">₹{project.price}</span>
+                      </div>
+                    </div>
+                  </Card>
+                  
+                  {/* Back Side */}
+                  <Card className="flip-card-back holographic-card overflow-hidden flex flex-col items-center justify-center p-6 bg-gradient-primary">
+                    <h3 className="text-2xl font-bold mb-4 text-center">{project.title}</h3>
+                    <p className="text-center mb-6 line-clamp-4">{project.short_description}</p>
                     <Link to={`/projects/${project.id}`}>
-                      <Button variant="outline" size="sm" className="energy-border ripple-effect">View Details</Button>
+                      <Button variant="hero" size="lg" className="energy-border ripple-effect">
+                        View Full Details
+                      </Button>
                     </Link>
-                  </div>
+                  </Card>
                 </div>
-              </Card>
+              </div>
             ))
           ) : (
             <div className="col-span-full text-center text-muted-foreground py-12">

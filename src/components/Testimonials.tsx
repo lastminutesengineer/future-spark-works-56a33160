@@ -86,7 +86,7 @@ const Testimonials = () => {
             <CarouselContent className="-ml-2 md:-ml-4">
               {testimonials.map((testimonial, index) => (
                 <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
-                  <Card className="holographic-card p-6 h-full group">
+                  <Card className="holographic-card p-6 h-full group border-t-2 border-t-primary/40">
                     {/* Stars */}
                     <div className="flex gap-1 mb-4">
                       {[...Array(testimonial.rating)].map((_, i) => (

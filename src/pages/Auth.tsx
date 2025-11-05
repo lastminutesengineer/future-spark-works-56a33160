@@ -131,6 +131,17 @@ const Auth = () => {
               required
             />
           </div>
+          {!isLogin && (
+            <div className="space-y-2">
+              <Label htmlFor="confirmPassword">Re-enter Password</Label>
+              <Input
+                id="confirmPassword"
+                type="password"
+                placeholder="••••••••"
+                required={!isLogin}
+              />
+            </div>
+          )}
           <Button type="submit" variant="hero" className="w-full" disabled={loading}>
             {loading ? "Please wait..." : isLogin ? "Login" : "Sign Up"}
           </Button>

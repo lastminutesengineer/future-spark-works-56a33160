@@ -77,18 +77,27 @@ const ServicesPage = () => {
 
           {/* Stats Section */}
           <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center glass-card p-8 hover-lift">
-              <div className="text-5xl font-bold gradient-text mb-2">500+</div>
-              <div className="text-muted-foreground">Projects Delivered</div>
-            </div>
-            <div className="text-center glass-card p-8 hover-lift">
-              <div className="text-5xl font-bold gradient-text mb-2">1000+</div>
-              <div className="text-muted-foreground">Happy Clients</div>
-            </div>
-            <div className="text-center glass-card p-8 hover-lift">
-              <div className="text-5xl font-bold gradient-text mb-2">50+</div>
-              <div className="text-muted-foreground">Workshops Done</div>
-            </div>
+            {[
+              { number: "500+", label: "Projects Delivered", backText: "Excellence delivered" },
+              { number: "1000+", label: "Happy Clients", backText: "Customer satisfaction" },
+              { number: "50+", label: "Workshops Done", backText: "Knowledge sharing" },
+            ].map((stat, idx) => (
+              <div key={idx} className="flip-card" style={{ height: '200px' }}>
+                <div className="flip-card-inner">
+                  {/* Front */}
+                  <div className="flip-card-front text-center glass-card p-8 hover-lift flex flex-col items-center justify-center">
+                    <div className="text-5xl font-bold gradient-text mb-2">{stat.number}</div>
+                    <div className="text-muted-foreground">{stat.label}</div>
+                  </div>
+                  
+                  {/* Back */}
+                  <div className="flip-card-back text-center glass-card p-8 flex flex-col items-center justify-center bg-gradient-primary">
+                    <div className="text-4xl font-bold mb-3">{stat.number}</div>
+                    <div className="text-sm">{stat.backText}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
