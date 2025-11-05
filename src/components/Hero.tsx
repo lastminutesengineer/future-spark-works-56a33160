@@ -82,7 +82,7 @@ const Hero = () => {
             </Link>
           </div>
 
-          {/* Stats Cards with Circular Glow Animation */}
+          {/* Stats Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mt-12 sm:mt-16 lg:mt-20 max-w-3xl mx-auto px-4">
             {[
               { icon: "⚡", number: "500+", label: "Projects Delivered" },
@@ -94,34 +94,22 @@ const Hero = () => {
                 className="holographic-card p-6 sm:p-8 relative overflow-hidden animate-slide-up scan-line-container group"
                 style={{ animationDelay: `${0.8 + idx * 0.2}s` }}
               >
-                {/* Circular Icon with Strong Glow */}
-                <div className="relative mx-auto mb-6 w-32 h-32 flex items-center justify-center">
-                  {/* Outer Glow Effect */}
-                  <div className="absolute inset-0 rounded-full bg-primary/30 blur-2xl group-hover:bg-primary/50 transition-all duration-500 animate-pulse" />
-                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary to-secondary opacity-20 group-hover:opacity-40 transition-all duration-500" />
-                  
-                  {/* Circle Border */}
-                  <div className="absolute inset-0 rounded-full border-4 border-primary/50 group-hover:border-primary transition-all duration-500" 
-                       style={{ boxShadow: '0 0 30px hsl(var(--primary) / 0.6), 0 0 60px hsl(var(--primary) / 0.4)' }} />
-                  
-                  {/* Icon */}
-                  <div className="relative z-10 text-4xl sm:text-5xl group-hover:scale-110 transition-transform duration-500">
+                <div className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-20 transition-opacity" />
+                <div className="absolute inset-0 bg-gradient-glow opacity-0 group-hover:opacity-100 transition-opacity" />
+                
+                <div className="relative z-10 text-center">
+                  <div className="text-4xl sm:text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">
                     {stat.icon}
                   </div>
-                </div>
-
-                {/* Stats Text */}
-                <div className="text-center space-y-2">
-                  <div className="text-3xl sm:text-4xl font-bold gradient-text animate-energy-pulse">
+                  <div className="text-3xl sm:text-4xl font-bold gradient-text mb-2 animate-energy-pulse">
                     {stat.number}
                   </div>
                   <div className="text-sm sm:text-base text-muted-foreground font-medium">
                     {stat.label}
                   </div>
                 </div>
-
-                {/* Background Glow */}
-                <div className="absolute inset-0 bg-gradient-glow opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                <div className="absolute -bottom-1 -right-1 w-16 h-16 sm:w-20 sm:h-20 bg-primary/10 rounded-full blur-2xl group-hover:bg-primary/20 transition-all" />
               </div>
             ))}
           </div>

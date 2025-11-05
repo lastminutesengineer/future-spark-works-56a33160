@@ -75,35 +75,19 @@ const ServicesPage = () => {
             </div>
           )}
 
-          {/* Stats Section with Circular Glow */}
+          {/* Stats Section */}
           <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               { icon: "⚡", number: "500+", label: "Projects Delivered" },
               { icon: "🎯", number: "1000+", label: "Happy Clients" },
               { icon: "🏆", number: "50+", label: "Workshops Done" },
             ].map((stat, idx) => (
-              <div key={idx} className="glass-card p-8 hover-lift group">
-                {/* Circular Icon with Strong Glow */}
-                <div className="relative mx-auto mb-6 w-32 h-32 flex items-center justify-center">
-                  {/* Outer Glow Effect */}
-                  <div className="absolute inset-0 rounded-full bg-primary/30 blur-2xl group-hover:bg-primary/50 transition-all duration-500 animate-pulse" />
-                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary to-secondary opacity-20 group-hover:opacity-40 transition-all duration-500" />
-                  
-                  {/* Circle Border */}
-                  <div className="absolute inset-0 rounded-full border-4 border-primary/50 group-hover:border-primary transition-all duration-500" 
-                       style={{ boxShadow: '0 0 30px hsl(var(--primary) / 0.6), 0 0 60px hsl(var(--primary) / 0.4)' }} />
-                  
-                  {/* Icon */}
-                  <div className="relative z-10 text-5xl group-hover:scale-110 transition-transform duration-500">
-                    {stat.icon}
-                  </div>
+              <div key={idx} className="text-center glass-card p-8 hover-lift group">
+                <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">
+                  {stat.icon}
                 </div>
-
-                {/* Stats Text */}
-                <div className="text-center space-y-2">
-                  <div className="text-5xl font-bold gradient-text">{stat.number}</div>
-                  <div className="text-muted-foreground">{stat.label}</div>
-                </div>
+                <div className="text-5xl font-bold gradient-text mb-2">{stat.number}</div>
+                <div className="text-muted-foreground">{stat.label}</div>
               </div>
             ))}
           </div>

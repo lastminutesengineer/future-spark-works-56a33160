@@ -51,35 +51,17 @@ const FeaturedProjects = () => {
             projects.map((project, index) => (
               <Card key={project.id} className={`holographic-card overflow-hidden group fade-in-up scan-line-container ${isVisible ? 'visible' : ''}`} style={{ animationDelay: `${index * 0.15}s` }}>
                 <div className="relative h-48 overflow-hidden">
-                  {/* Circular Icon Overlay with Glow */}
-                  <div className="absolute inset-0 flex items-center justify-center z-10 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                    <div className="relative w-24 h-24">
-                      {/* Strong Glow */}
-                      <div className="absolute inset-0 rounded-full bg-primary/40 blur-2xl animate-pulse" />
-                      <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary to-secondary opacity-30" />
-                      
-                      {/* Circle Border */}
-                      <div className="absolute inset-0 rounded-full border-4 border-primary" 
-                           style={{ boxShadow: '0 0 30px hsl(var(--primary) / 0.8), 0 0 60px hsl(var(--primary) / 0.5)' }} />
-                      
-                      {/* View Icon */}
-                      <div className="absolute inset-0 flex items-center justify-center text-primary text-4xl">
-                        👁️
-                      </div>
-                    </div>
-                  </div>
-                  
                   <img
                     src={project.image_url || "/placeholder.svg"}
                     alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-110 group-hover:blur-sm transition-all duration-500"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-smooth"
                   />
-                  <div className="absolute inset-0 bg-background/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <Badge className="absolute top-3 right-3 animate-glow-pulse z-20" variant="secondary">
+                  <div className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-20 transition-opacity mix-blend-overlay" />
+                  <Badge className="absolute top-3 right-3 animate-glow-pulse" variant="secondary">
                     {project.category}
                   </Badge>
                   {project.featured && (
-                    <div className="absolute top-3 left-3 px-3 py-1 bg-primary/90 backdrop-blur-sm rounded-full text-xs font-bold animate-energy-pulse z-20">
+                    <div className="absolute top-3 left-3 px-3 py-1 bg-primary/90 backdrop-blur-sm rounded-full text-xs font-bold animate-energy-pulse">
                       AI Recommended
                     </div>
                   )}
