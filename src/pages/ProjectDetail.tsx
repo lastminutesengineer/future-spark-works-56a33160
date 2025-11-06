@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -7,9 +7,12 @@ import { Badge } from "@/components/ui/badge";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ArrowLeft, ShoppingCart } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 const ProjectDetail = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
+  const { toast } = useToast();
   const [project, setProject] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
@@ -29,6 +32,40 @@ const ProjectDetail = () => {
       setProject(data);
     }
     setLoading(false);
+  };
+
+  const addToCart = async () => {
+    const { data: { user } } = await supabase.auth.getUser();
+    
+    if (!user) {
+      toast({
+        title: "Please log in",
+        description: "You need to be logged in to add items to cart",
+        variant: "destructive",
+      });
+      navigate("/auth");
+      return;
+    }
+
+    const { error } = await supabase.from("cart_items").insert({
+      user_id: user.id,
+      item_id: project.id,
+      item_type: "project",
+      quantity: 1,
+    });
+
+    if (error) {
+      toast({
+        title: "Error",
+        description: "Failed to add to cart",
+        variant: "destructive",
+      });
+    } else {
+      toast({
+        title: "Success",
+        description: "Project added to cart!",
+      });
+    }
   };
 
   if (loading) {
@@ -94,7 +131,7 @@ const ProjectDetail = () => {
                   <div className="text-sm text-muted-foreground">Price</div>
                   <div className="text-3xl font-bold text-primary">₹{project.price}</div>
                 </div>
-                <Button variant="hero" size="lg" className="gap-2">
+                <Button variant="hero" size="lg" className="gap-2" onClick={addToCart}>
                   <ShoppingCart className="w-5 h-5" />
                   Add to Cart
                 </Button>
