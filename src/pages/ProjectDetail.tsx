@@ -15,6 +15,7 @@ const ProjectDetail = () => {
   const { toast } = useToast();
   const [project, setProject] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
     fetchProject();
@@ -51,7 +52,7 @@ const ProjectDetail = () => {
       user_id: user.id,
       item_id: project.id,
       item_type: "project",
-      quantity: 1,
+      quantity: quantity,
     });
 
     if (error) {
@@ -63,8 +64,9 @@ const ProjectDetail = () => {
     } else {
       toast({
         title: "Success",
-        description: "Project added to cart!",
+        description: `${quantity} project(s) added to cart!`,
       });
+      setQuantity(1); // Reset quantity after adding
     }
   };
 
@@ -126,12 +128,26 @@ const ProjectDetail = () => {
                 <p className="text-muted-foreground text-lg">{project.short_description}</p>
               </div>
 
-              <div className="flex items-center justify-between p-6 glass-card rounded-2xl">
-                <div>
-                  <div className="text-sm text-muted-foreground">Price</div>
-                  <div className="text-3xl font-bold text-primary">₹{project.price}</div>
+              <div className="p-6 glass-card rounded-2xl space-y-4">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <div className="text-sm text-muted-foreground">Price</div>
+                    <div className="text-3xl font-bold text-primary">₹{project.price}</div>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-sm text-muted-foreground mb-1">Quantity</div>
+                    <select 
+                      value={quantity} 
+                      onChange={(e) => setQuantity(Number(e.target.value))}
+                      className="px-4 py-2 rounded-lg bg-background border border-border text-foreground"
+                    >
+                      {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(num => (
+                        <option key={num} value={num}>{num}</option>
+                      ))}
+                    </select>
+                  </div>
                 </div>
-                <Button variant="hero" size="lg" className="gap-2" onClick={addToCart}>
+                <Button variant="hero" size="lg" className="w-full gap-2" onClick={addToCart}>
                   <ShoppingCart className="w-5 h-5" />
                   Add to Cart
                 </Button>
