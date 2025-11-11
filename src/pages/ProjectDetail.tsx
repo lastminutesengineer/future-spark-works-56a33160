@@ -131,8 +131,8 @@ const ProjectDetail = () => {
               <div className="p-6 glass-card rounded-2xl space-y-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="text-sm text-muted-foreground">Price</div>
-                    <div className="text-3xl font-bold text-primary">₹{project.price}</div>
+                    <div className="text-sm text-muted-foreground">Unit Price</div>
+                    <div className="text-xl font-semibold text-muted-foreground">₹{project.price}</div>
                   </div>
                   <div className="text-right">
                     <div className="text-sm text-muted-foreground mb-1">Quantity</div>
@@ -159,6 +159,12 @@ const ProjectDetail = () => {
                         +
                       </Button>
                     </div>
+                  </div>
+                </div>
+                <div className="pt-2 border-t border-border">
+                  <div className="flex items-center justify-between">
+                    <div className="text-sm text-muted-foreground">Total Price</div>
+                    <div className="text-3xl font-bold text-primary">₹{(project.price * quantity).toLocaleString('en-IN')}</div>
                   </div>
                 </div>
                 <Button variant="hero" size="lg" className="w-full gap-2" onClick={addToCart}>
