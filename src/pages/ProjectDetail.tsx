@@ -136,15 +136,29 @@ const ProjectDetail = () => {
                   </div>
                   <div className="text-right">
                     <div className="text-sm text-muted-foreground mb-1">Quantity</div>
-                    <select 
-                      value={quantity} 
-                      onChange={(e) => setQuantity(Number(e.target.value))}
-                      className="px-4 py-2 rounded-lg bg-background border border-border text-foreground"
-                    >
-                      {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(num => (
-                        <option key={num} value={num}>{num}</option>
-                      ))}
-                    </select>
+                    <div className="flex items-center gap-2">
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                        disabled={quantity <= 1}
+                        className="h-10 w-10"
+                      >
+                        -
+                      </Button>
+                      <div className="w-16 text-center text-lg font-semibold">
+                        {quantity}
+                      </div>
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        onClick={() => setQuantity(Math.min(99, quantity + 1))}
+                        disabled={quantity >= 99}
+                        className="h-10 w-10"
+                      >
+                        +
+                      </Button>
+                    </div>
                   </div>
                 </div>
                 <Button variant="hero" size="lg" className="w-full gap-2" onClick={addToCart}>
